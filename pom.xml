@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <name>petclinic</name>
-    <description>Pet clinic</import org.springframework.test.context.junit4.SpringRunner;description>
+    <description>Pet clinic</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
