@@ -1,0 +1,5 @@
+fritz/test/petclinic/controllers/VetController.class
+fritz/test/petclinic/bootstrap/DataLoader.class
+fritz/test/petclinic/controllers/IndexController.class
+fritz/test/petclinic/controllers/OwnerController.class
+fritz/test/petclinic/PetclinicApplication.class
