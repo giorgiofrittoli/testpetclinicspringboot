@@ -122,3 +122,4 @@ Desktop.ini
 /.idea/
 /petclinic-data/target/
 /petclinic-web/target/
+petclinic-data/src/main/resources/
