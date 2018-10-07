@@ -76,7 +76,7 @@ class OwnerControllerTest {
 		//then
 		mockMvc.perform(get("/owners/1"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("owner/show"));
+				.andExpect(view().name("owners/show"));
 		//.andExpect(model().attribute("owner", isNotNull()));
 
 		//verify(ownerController, times(1)).showOwner(anyLong());
