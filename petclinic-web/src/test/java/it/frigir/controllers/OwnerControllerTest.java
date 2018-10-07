@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -43,24 +43,12 @@ class OwnerControllerTest {
 
 	}
 
-	@Test
-	void listOwner() throws Exception {
-		//quando servizio chiamato resituisco il set creato
-		when(ownerService.findAll()).thenReturn(owners);
-		//status().isOk() o status().is(200)
-		mockMvc.perform(get("/owners"))
-				.andExpect(status().isOk())
-				.andExpect(view().name("owners/index"))
-				.andExpect(model().attribute("owners", hasSize(2)));
-	}
-
 
 	@Test
 	void findOwners() throws Exception {
-		mockMvc.perform(get("/owners/find"))
-				.andExpect(view().name("notImplemented"));
-		//il servizio non deve esser richiamato
-		verifyZeroInteractions(ownerService);
+		mockMvc.perform(get("/owners/findform"))
+				.andExpect(view().name("owners/find"));
+
 	}
 
 
@@ -77,9 +65,41 @@ class OwnerControllerTest {
 		mockMvc.perform(get("/owners/1"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("owners/show"));
-		//.andExpect(model().attribute("owner", isNotNull()));
-
-		//verify(ownerController, times(1)).showOwner(anyLong());
 
 	}
+
+	@Test
+	void initFindFormTest() throws Exception {
+		mockMvc.perform(get("/owners/findform"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("owners/find"));
+	}
+
+	@Test
+	void finAllOwnersOneTest() throws Exception {
+		//given
+		Set<Owner> owners = new HashSet<>();
+		owners.add(Owner.builder().id(1L).build());
+		when(ownerService.findAllByLastName(anyString())).thenReturn(owners);
+
+		mockMvc.perform(get("/owners"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("owners/show"))
+				.andExpect(model().attributeExists("owner"));
+	}
+
+	@Test
+	void finAllOwnersManyTest() throws Exception {
+		//given
+		Set<Owner> owners = new HashSet<>();
+		owners.add(Owner.builder().id(1L).build());
+		owners.add(Owner.builder().id(2L).build());
+		when(ownerService.findAllByLastName(anyString())).thenReturn(owners);
+
+		mockMvc.perform(get("/owners"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("owners/list"))
+				.andExpect(model().attribute("owners", hasSize(2)));
+	}
+
 }
