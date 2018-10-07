@@ -102,4 +102,12 @@ class OwnerControllerTest {
 				.andExpect(model().attribute("owners", hasSize(2)));
 	}
 
+	@Test
+	void initNewOwnerForm() throws Exception {
+		mockMvc.perform(get("/owners/new"))
+				.andExpect(status().is3xxRedirection())
+				.andExpect(view().name("owners/form"))
+				.andExpect(model().attributeExists("owner"));
+	}
+
 }
