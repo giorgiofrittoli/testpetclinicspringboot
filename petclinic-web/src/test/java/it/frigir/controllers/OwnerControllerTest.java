@@ -47,7 +47,7 @@ class OwnerControllerTest {
 	@Test
 	void findOwners() throws Exception {
 		mockMvc.perform(get("/owners/findform"))
-				.andExpect(view().name("owners/find"));
+				.andExpect(view().name("/owners/find"));
 
 	}
 
@@ -64,7 +64,7 @@ class OwnerControllerTest {
 		//then
 		mockMvc.perform(get("/owners/1"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("owners/show"));
+				.andExpect(view().name("/owners/show"));
 
 	}
 
@@ -72,7 +72,7 @@ class OwnerControllerTest {
 	void initFindFormTest() throws Exception {
 		mockMvc.perform(get("/owners/findform"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("owners/find"));
+				.andExpect(view().name("/owners/find"));
 	}
 
 	@Test
@@ -84,7 +84,7 @@ class OwnerControllerTest {
 
 		mockMvc.perform(get("/owners"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("owners/show"))
+				.andExpect(view().name("/owners/show"))
 				.andExpect(model().attributeExists("owner"));
 	}
 
@@ -98,15 +98,15 @@ class OwnerControllerTest {
 
 		mockMvc.perform(get("/owners"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("owners/list"))
+				.andExpect(view().name("/owners/list"))
 				.andExpect(model().attribute("owners", hasSize(2)));
 	}
 
 	@Test
 	void initNewOwnerForm() throws Exception {
 		mockMvc.perform(get("/owners/new"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(view().name("owners/form"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("/owners/form"))
 				.andExpect(model().attributeExists("owner"));
 	}
 

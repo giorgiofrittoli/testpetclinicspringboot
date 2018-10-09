@@ -11,4 +11,5 @@ public interface OwnerRepository extends CrudRepository<Owner, Long> {
 
 	Set<Owner> findAllByLastNameLike(String lastName);
 
+
 }

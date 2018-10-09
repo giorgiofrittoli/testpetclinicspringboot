@@ -46,7 +46,7 @@ public class OwnerController {
 		} else if (findResults.size() == 1) {
 			Owner foundOwner = findResults.iterator().next();
 			model.addAttribute("owner", foundOwner);
-			return "owners/show";
+			return "/owners/show";
 		} else {
 			model.addAttribute("owners", findResults);
 			return "/owners/list";
@@ -56,7 +56,7 @@ public class OwnerController {
 
 	@GetMapping("/{ownerId}")
 	public ModelAndView showOwner(@PathVariable Long ownerId) {
-		ModelAndView modelAndView = new ModelAndView("owners/show");
+		ModelAndView modelAndView = new ModelAndView("/owners/show");
 		modelAndView.addObject(ownerService.findById(ownerId));
 		return modelAndView;
 	}
