@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ public class Visit extends BasedEntity {
 		this.pet = pet;
 	}
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date")
 	private LocalDate date;
 

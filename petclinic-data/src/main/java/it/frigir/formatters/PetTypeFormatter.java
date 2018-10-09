@@ -1,21 +1,20 @@
 package it.frigir.formatters;
 
 import it.frigir.model.PetType;
-import it.frigir.repository.PetTypeRepository;
+import it.frigir.services.PetTypeService;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 import java.util.Locale;
 
 
 @Component
 public class PetTypeFormatter implements Formatter<PetType> {
 
-	private final PetTypeRepository petTypeRepository;
+	private final PetTypeService petTypeService;
 
-	public PetTypeFormatter(PetTypeRepository petTypeRepository) {
-		this.petTypeRepository = petTypeRepository;
+	public PetTypeFormatter(PetTypeService petTypeService) {
+		this.petTypeService = petTypeService;
 	}
 
 
@@ -25,16 +24,12 @@ public class PetTypeFormatter implements Formatter<PetType> {
 	}
 
 	@Override
-	public PetType parse(String text, Locale locale) throws ParseException {
+	public PetType parse(String text, Locale locale) {
 
-
-		Iterable<PetType> findPetTypes = petTypeRepository.findAll();
-		for (PetType type : findPetTypes) {
-			if (type.getName().equals(text)) {
-				return type;
-			}
-		}
-		throw new ParseException("type not found: " + text, 0);
+		return petTypeService.findAll().stream()
+				.filter(petType -> petType.getName().equals(text))
+				.findFirst()
+				.orElseThrow(() -> new RuntimeException("Error parsing petType"));
 	}
 
 }

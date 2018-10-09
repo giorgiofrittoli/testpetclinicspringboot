@@ -25,7 +25,8 @@ public class Pet extends BasedEntity {
 		this.owner = owner;
 		this.birthDate = birthDate;
 		this.name = name;
-		this.visits = visits;
+		if (visits != null)
+			this.visits = visits;
 	}
 
 	@ManyToOne
@@ -45,5 +46,9 @@ public class Pet extends BasedEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
 	private Set<Visit> visits = new HashSet<>();
+
+	public void addVisit(Visit visit) {
+		this.visits.add(visit);
+	}
 
 }

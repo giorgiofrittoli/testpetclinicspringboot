@@ -24,6 +24,7 @@
 /media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/model/BasedEntity.java
 /media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/repository/PetTypeRepository.java
 /media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/model/Vet.java
+/media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/formatters/PetTypeFormatter.java
 /media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/services/map/PetMapService.java
 /media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/services/VisitService.java
 /media/fritz/DATA/workspace/sping_course/testpetclinicspringboot/petclinic-data/src/main/java/it/frigir/model/Owner.java
